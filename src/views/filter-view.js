@@ -1,5 +1,5 @@
 import View from './view';
-import { html } from '../utils';
+import {html} from '../utils';
 
 export default class FilterView extends View {
   constructor() {
@@ -9,14 +9,15 @@ export default class FilterView extends View {
   }
 
   /**
-   * @override
-   */
+    * @override
+    */
   createHtml() {
     return html/*html*/`
       <div class="trip-filters__filter">
         <input id="filter-everything" class="trip-filters__filter-input  visually-hidden" type="radio" name="trip-filter" value="everything" checked>
         <label class="trip-filters__filter-label" for="filter-everything">Everything</label>
       </div>
+
       <div class="trip-filters__filter">
         <input id="filter-future" class="trip-filters__filter-input  visually-hidden" type="radio" name="trip-filter" value="future">
         <label class="trip-filters__filter-label" for="filter-future">Future</label>
@@ -26,3 +27,5 @@ export default class FilterView extends View {
 }
 
 customElements.define(String(FilterView), FilterView);
+
+

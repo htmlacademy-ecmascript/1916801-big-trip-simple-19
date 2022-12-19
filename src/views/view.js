@@ -1,13 +1,11 @@
 export default class View extends HTMLElement {
   constructor() {
     super();
-
     this.insertAdjacentHTML('beforeend', this.createHtml(...arguments));
   }
 
   createHtml() {
     void arguments;
-
     return '';
   }
 
