@@ -9,8 +9,8 @@ export default class PointTypeView extends View {
   }
 
   /**
-   * @override
-   */
+    * @override
+    */
   createHtml() {
     return html/*html*/`
       <label class="event__type  event__type-btn" for="event-type-toggle-1">

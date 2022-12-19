@@ -1,17 +1,17 @@
 import View from '../view';
 import {html} from '../../utils';
+import './offer-view.css';
 
 export default class OffersView extends View {
   constructor() {
     super();
 
-    this.classList.add('event__section');
-    this.classList.add('event__section-offers');
+    this.classList.add('event__section','event__section--offers');
   }
 
   /**
-   * @override
-   */
+    * @override
+    */
   createHtml() {
     return html/*html*/`
       <h3 class="event__section-title  event__section-title--offers">Offers</h3>
@@ -22,16 +22,16 @@ export default class OffersView extends View {
           <label class="event__offer-label" for="event-offer-luggage-1">
             <span class="event__offer-title">Add luggage</span>
             &plus;&euro;&nbsp;
-            <span class="event__offer-price">50</span>
+            <span class="event__offer-price">30</span>
           </label>
         </div>
 
         <div class="event__offer-selector">
           <input class="event__offer-checkbox  visually-hidden" id="event-offer-comfort-1" type="checkbox" name="event-offer-comfort" checked>
           <label class="event__offer-label" for="event-offer-comfort-1">
-            <span class="event__offer-title">Switch to comfort</span>
+            <span class="event__offer-title">Switch to comfort class</span>
             &plus;&euro;&nbsp;
-            <span class="event__offer-price">80</span>
+            <span class="event__offer-price">100</span>
           </label>
         </div>
 

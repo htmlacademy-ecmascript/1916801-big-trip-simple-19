@@ -1,5 +1,5 @@
 import View from './view';
-import { html } from '../utils';
+import {html} from '../utils';
 import PointTypeView from './common/point-type-view';
 import DestinationView from './common/destination-view';
 import DatesView from './common/dates-view';
@@ -21,21 +21,15 @@ export default class NewPointEditorView extends View {
     return html/*html*/`
       <form class="event event--edit" action="#" method="post">
         <header class="event__header">
-          <!-- PointTypeView -->
           <${PointTypeView}></${PointTypeView}>
-          <!-- DestinationView -->
-          <${DestinationView}></${DestinationView}>
-          <!-- DatesView -->
-          <${DatesView}></${DatesView}>
-          <!-- BasePriceView -->
-          <${BasePriceView}></${BasePriceView}>
+          <${DestinationView} class="event__field-group"></${DestinationView}>
+          <${DatesView} class="event__field-group"></${DatesView}>
+          <${BasePriceView} class="event__field-group"></${BasePriceView}>
           <button class="event__save-btn  btn  btn--blue" type="submit">Save</button>
           <button class="event__reset-btn" type="reset">Cancel</button>
-          </header>
-          <section class="event__details">
-          <!-- OffersView -->
+        </header>
+        <section class="event__details">
           <${OffersView}></${OffersView}>
-          <!-- DestinationDetailsView -->
           <${DestinationDetailsView}></${DestinationDetailsView}>
         </section>
       </form>
