@@ -17,6 +17,14 @@ export default class PointAdapter extends Adapter {
     this.type = data.type;
   }
 
+  get startDateAsNumber() {
+    return Date.parse(this.startDate);
+  }
+
+  get endDateAsNumber() {
+    return Date.parse(this.endDate);
+  }
+
   /**
    * @override
    * @return {Partial<Point>}
