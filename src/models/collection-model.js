@@ -155,12 +155,14 @@ export default class CollectionModel extends Model {
    * @param {string} id
    */
   async delete(id) {
-    const delItem = await this.#store.delete(id);
-    const index = this.findIndexById(delItem[id]);
-    const detail = { delItem: this.item(index) };
+    await this.#store.delete(id);
+
+    const index = this.findIndexById(id);
+    const detail = this.item(index);
 
     this.#items.splice(index, 1);
     this.dispatchEvent(new CustomEvent('delete', { detail }));
-  }
 
+    return detail;
+  }
 }
