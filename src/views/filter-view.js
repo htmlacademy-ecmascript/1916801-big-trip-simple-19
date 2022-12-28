@@ -1,7 +1,6 @@
 import { html } from '../utils';
 import RadioGroupView from './radio-group-view';
 
-
 export default class FilterView extends RadioGroupView {
   constructor() {
     super();
