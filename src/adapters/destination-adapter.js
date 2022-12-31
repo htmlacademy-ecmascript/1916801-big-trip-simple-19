@@ -3,8 +3,8 @@ import Adapter from './adapter';
 export default class DestinationAdapter extends Adapter {
 
   /**
-* @param {Destination} data
-*/
+   * @param {Destination} data
+   */
   constructor(data) {
     super();
 

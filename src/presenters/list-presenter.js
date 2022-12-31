@@ -22,8 +22,8 @@ export default class ListPresenter extends Presenter {
   }
 
   /**
-  * @param {PointAdapter} point
-  */
+   * @param {PointAdapter} point
+   */
   createPointViewState(point) {
     const destination = this.destinationsModel.findById(point.destinationId);
     const offerGroup = this.offerGroupsModel.findById(point.type);
@@ -54,7 +54,7 @@ export default class ListPresenter extends Presenter {
     this.updateView();
   }
 
-  handlePointsModelSort(){
+  handlePointsModelSort() {
     this.updateView();
   }
 }

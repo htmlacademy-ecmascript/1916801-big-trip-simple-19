@@ -9,8 +9,8 @@ export default class FilterView extends RadioGroupView {
   }
 
   /**
-  * @param {OptionViewState} state
-  */
+   * @param {OptionViewState} state
+   */
   createOptionHtml(state) {
 
     return html/*html*/`

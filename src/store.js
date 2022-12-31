@@ -15,8 +15,8 @@ export default class Store {
   }
 
   /**
- * @return {Promise<Item[]>}
- */
+   * @return {Promise<Item[]>}
+   */
   list() {
     return this.request('/', {
       method: 'get'
@@ -35,9 +35,9 @@ export default class Store {
   }
 
   /**
- * @param {Item} item
- * @return {Promise<Item>}
- */
+   * @param {Item} item
+   * @return {Promise<Item>}
+   */
   update(item) {
     // @ts-ignore
     return this.request(`/${item.id}`, {
@@ -47,9 +47,9 @@ export default class Store {
   }
 
   /**
-     * @param {string} id
-     * @return {Promise<string>}
-     */
+   * @param {string} id
+   * @return {Promise<string>}
+   */
   delete(id) {
     return this.request(`/${id}`, {
       method: 'delete'
@@ -57,9 +57,9 @@ export default class Store {
   }
 
   /**
- * @param {string} path
- * @param {RequestInit} options
- */
+   * @param {string} path
+   * @param {RequestInit} options
+   */
   async request(path, options = {}) {
     const headers = {
       'content-type': 'application/json',
@@ -84,8 +84,8 @@ export default class Store {
   }
 
   /**
- * @param {Response} response
- */
+   * @param {Response} response
+   */
   static parse(response) {
     if (response.headers.get('content-type').startsWith('application/json')) {
       return response.json();

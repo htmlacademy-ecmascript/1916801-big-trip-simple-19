@@ -1,5 +1,5 @@
 import View from '../view';
-import {html} from '../../utils';
+import { html } from '../../utils';
 
 export default class DatesView extends View {
   constructor() {
@@ -9,8 +9,8 @@ export default class DatesView extends View {
   }
 
   /**
-    * @override
-    */
+   * @override
+   */
   createHtml() {
     return html/*html*/`
       <label class="visually-hidden" for="event-start-time-1">From</label>

@@ -10,8 +10,8 @@ export default class OffersView extends View {
   }
 
   /**
-    * @override
-    */
+   * @override
+   */
   createHtml() {
     return html/*html*/`
       <h3 class="event__section-title  event__section-title--offers">Offers</h3>

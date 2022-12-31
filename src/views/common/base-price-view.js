@@ -1,5 +1,5 @@
 import View from '../view';
-import {html} from '../../utils';
+import { html } from '../../utils';
 
 export default class BasePriceView extends View {
   constructor() {
@@ -9,8 +9,8 @@ export default class BasePriceView extends View {
   }
 
   /**
-    * @override
-    */
+   * @override
+   */
   createHtml() {
     return html/*html*/`
       <label class="event__label" for="event-price-1">

@@ -9,8 +9,8 @@ export default class DestinationDetailsView extends View {
   }
 
   /**
-    * @override
-    */
+   * @override
+   */
   createHtml() {
     return html/*html*/`
       <h3 class="event__section-title  event__section-title--destination">Destination</h3>

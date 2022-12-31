@@ -1,9 +1,9 @@
 import Model from './model';
 
 /**
-* @template Item
-* @template {Adapter} ItemAdapter
-*/
+ * @template Item
+ * @template {Adapter} ItemAdapter
+ */
 export default class CollectionModel extends Model {
 
   #store;
@@ -12,17 +12,17 @@ export default class CollectionModel extends Model {
   #sort;
 
   /**
- * @type {Item[]}
- */
+   * @type {Item[]}
+   */
   #items;
 
   /**
-  * @param {Object} setup
-  * @param {Store<Item>} setup.store
-  * @param {AdaptCallback<Item,ItemAdapter>} setup.adapt
-  * @param {FilterCallback<ItemAdapter>} [setup.filter]
-  * @param {SortCallback<ItemAdapter>} [setup.sort]
-  */
+   * @param {Object} setup
+   * @param {Store<Item>} setup.store
+   * @param {AdaptCallback<Item,ItemAdapter>} setup.adapt
+   * @param {FilterCallback<ItemAdapter>} [setup.filter]
+   * @param {SortCallback<ItemAdapter>} [setup.sort]
+   */
   constructor(setup) {
     super();
     this.#store = setup.store;
@@ -33,15 +33,15 @@ export default class CollectionModel extends Model {
   }
 
   /**
- * @override
- */
+   * @override
+   */
   async ready() {
     this.#items = await this.#store.list();
   }
 
   /**
-  * @param {FilterCallback<ItemAdapter>} filter
-  */
+   * @param {FilterCallback<ItemAdapter>} filter
+   */
   setFilter(filter, notify = true) {
     this.#filter = filter;
 
@@ -56,8 +56,8 @@ export default class CollectionModel extends Model {
   }
 
   /**
-  * @param {SortCallback<ItemAdapter>} sort
-  */
+   * @param {SortCallback<ItemAdapter>} sort
+   */
   setSort(sort, notify = true) {
     this.#sort = sort;
 
@@ -83,8 +83,8 @@ export default class CollectionModel extends Model {
   }
 
   /**
-  * @param {number} [index]
-  */
+   * @param {number} [index]
+   */
   item(index) {
     if (arguments.length) {
       const item = this.#items[index];
@@ -95,16 +95,16 @@ export default class CollectionModel extends Model {
   }
 
   /**
- * @param {string} key
- * @param {*} value
- */
+   * @param {string} key
+   * @param {*} value
+   */
   findBy(key, value) {
     return this.listAll().find((item) => item[key] === value);
   }
 
   /**
-  * @param {string} id
-  */
+   * @param {string} id
+   */
   findById(id) {
     return this.findBy('id', id);
   }
@@ -125,8 +125,8 @@ export default class CollectionModel extends Model {
   }
 
   /**
-  * @param {ItemAdapter} item
-  */
+   * @param {ItemAdapter} item
+   */
   async add(item) {
     const newItem = await this.#store.add(item.toJSON());
     const detail = this.#adapt(newItem);
