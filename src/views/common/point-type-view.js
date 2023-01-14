@@ -103,6 +103,9 @@ export default class PointTypeView extends RadioGroupView {
    * @param {Event & {target: HTMLInputElement}} event
    */
   handleChange(event) {
+    if(event.target.type === 'checkbox') {
+      return event.stopImmediatePropagation();
+    }
     this.setValue(event.target.value);
   }
 
