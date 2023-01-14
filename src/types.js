@@ -100,10 +100,19 @@
  * @typedef {import('./views/list-view').default} ListView
  * @typedef {import('./views/filter-view').default} FilterView
  *  @typedef {import('./views/sort-view').default} SortView
+ * @typedef {import('./views/new-point-editor-view').default} NewPointEditorView
  */
 
 /**
  * @typedef OptionViewState
  * @prop {string} title
  * @prop {string} value
+ */
+
+/**
+ * @typedef OfferToggleViewState
+ * @prop {string} id
+ * @prop {string} title
+ * @prop {string} price
+ * @prop {boolean} checked
  */

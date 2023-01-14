@@ -15,9 +15,9 @@ export default class PointView extends View {
   }
 
   /**
-    * @override
-    * @param {PointViewState} state
-    */
+   * @override
+   * @param {PointViewState} state
+   */
   createHtml(state) {
     return html/*html*/`
       <div class="event">
@@ -47,8 +47,8 @@ export default class PointView extends View {
   }
 
   /**
-  * @param {OfferViewState} state
-  */
+   * @param {OfferViewState} state
+   */
   createOfferHtml(state) {
     return html/*html*/`
       <li class="event__offer">
