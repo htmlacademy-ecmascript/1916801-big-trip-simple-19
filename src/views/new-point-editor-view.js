@@ -6,6 +6,8 @@ import DatesView from './common/dates-view';
 import BasePriceView from './common/base-price-view';
 import OffersView from './common/offers-view';
 import DestinationDetailsView from './common/destination-details-view';
+import { saveButtonTextMap } from '../maps';
+import UiBlockerView from './ui-blocker-view';
 
 /**
  * @implements {EventListenerObject}
@@ -32,6 +34,16 @@ export default class NewPointEditorView extends View {
     this.destinationView = this.querySelector(String(DestinationView));
 
     /**
+     * @type {DatesView}
+     */
+    this.datesView = this.querySelector(String(DatesView));
+
+    /**
+     * @type {BasePriceView}
+     */
+    this.basePriceView = this.querySelector(String(BasePriceView));
+
+    /**
      * @type {OffersView}
      */
     this.offersView = this.querySelector(String(OffersView));
@@ -40,6 +52,8 @@ export default class NewPointEditorView extends View {
      * @type {DestinationDetailsView}
      */
     this.destinationDetailsView = this.querySelector(String(DestinationDetailsView));
+
+    this.uiBlockerView = new UiBlockerView();
   }
 
   /**
@@ -47,7 +61,7 @@ export default class NewPointEditorView extends View {
    */
   createHtml() {
     return html/*html*/`
-      <form class="event event--edit" action="#" method="post">
+      <form class="event event--edit" action="#" method="post" novalidate>
         <header class="event__header">
           <${PointTypeView}></${PointTypeView}>
           <${DestinationView} class="event__field-group"></${DestinationView}>
@@ -66,16 +80,30 @@ export default class NewPointEditorView extends View {
 
   open() {
     this.listView.prepend(this);
+    this.datesView.createCalendars();
+
     document.addEventListener('keydown', this);
   }
 
   close(notify = true) {
     this.remove();
+    this.datesView.destroyCalendars();
+
     document.removeEventListener('keydown', this);
 
     if (notify) {
       this.dispatchEvent(new CustomEvent('close'));
     }
+  }
+
+  /**
+   * @param {boolean} flag
+   */
+  awaitSave(flag){
+    const text = saveButtonTextMap[Number(flag)];
+
+    this.querySelector('.event__save-btn').textContent = text;
+    this.uiBlockerView.toggle(flag);
   }
 
   /**
