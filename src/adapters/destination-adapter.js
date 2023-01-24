@@ -10,7 +10,7 @@ export default class DestinationAdapter extends Adapter {
 
     this.id = String(data.id);
     this.textDescription = data.description;
-    this.nameCity = data.name;
+    this.name = data.name;
     this.pictures = data.pictures.map((item) => ({...item}));
   }
 }
