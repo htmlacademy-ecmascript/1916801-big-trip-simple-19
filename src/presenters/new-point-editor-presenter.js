@@ -4,7 +4,8 @@ import { formatNumber } from '../utils';
 import Presenter from './presenter';
 
 /**
- * @extends {Presenter<NewPointEditorView>}
+ * @template {NewPointEditorView} View
+ * @extends {Presenter<View>}
  */
 export default class NewPointEditorPresenter extends Presenter {
   constructor() {
@@ -77,6 +78,13 @@ export default class NewPointEditorPresenter extends Presenter {
   }
 
   /**
+   * @param {PointAdapter} point
+   */
+  async save(point) {
+    await this.pointsModel.add(point);
+  }
+
+  /**
    * @override
    */
   handleNavigation() {
@@ -119,7 +127,7 @@ export default class NewPointEditorPresenter extends Presenter {
       point.offerIds = this.view.offersView.getValues();
       point.id = String(this.pointsModel.listAll().length);
 
-      await this.pointsModel.add(point);
+      await this.save(point);
 
       this.view.close();
     }
@@ -132,7 +140,11 @@ export default class NewPointEditorPresenter extends Presenter {
 
   }
 
-  handleViewReset() {
+  /**
+   * @param {Event} event
+   */
+  handleViewReset(event) {
+    void event;
     this.view.close();
   }
 
