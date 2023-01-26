@@ -12,6 +12,13 @@ export default class ListView extends View {
 
     this.replaceChildren(...views);
   }
+
+  /**
+   * @param {string} id
+   */
+  findById(id) {
+    return this.querySelector(`${PointView}[data-id="${id}"]`);
+  }
 }
 
 customElements.define(String(ListView), ListView);
