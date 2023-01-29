@@ -1,14 +1,16 @@
+import { pointIconMap } from '../../maps';
 import { html } from '../../utils';
 import RadioGroupView from '../radio-group-view';
-import { pointIconMap } from '../../maps';
-import './point-type.view.css';
+import './point-type-view.css';
+
 export default class PointTypeView extends RadioGroupView {
   constructor() {
     super();
 
     this.classList.add('event__type-wrapper');
+
     this.addEventListener('change', this.handleChange);
-    this.addEventListener('keydown', this.handleKeyDown);
+    this.addEventListener('keydown', this.handleKeydown);
     this.addEventListener('blur', this.handleBlur, true);
     this.addEventListener('pointerup', this.handlePointerUp);
   }
@@ -21,21 +23,19 @@ export default class PointTypeView extends RadioGroupView {
     super.setValue(value);
 
     if (pointIconMap[value]) {
-
       /**
        * @type {HTMLImageElement}
        */
       (this.querySelector('.event__type-icon')).src = pointIconMap[value];
     }
-
   }
 
   /**
    * @override
    */
   createHtml() {
-    return html/*html*/`
-      <label class="event__type  event__type-btn" for="event-type-toggle-1" tabindex="-1">
+    return html`
+      <label class="event__type  event__type-btn" for="event-type-toggle-1" tabindex = "-1">
         <span class="visually-hidden">Choose event type</span>
         <img class="event__type-icon" width="17" height="17" src="img/icons/flight.png" alt="Event type icon">
       </label>
@@ -50,10 +50,10 @@ export default class PointTypeView extends RadioGroupView {
   }
 
   /**
-   * @param {OptionViewState} state
-   */
+ * @param {OptionViewState} state
+ */
   createOptionHtml(state) {
-    return html/*html*/`
+    return html`
       <div class="event__type-item">
         <input
           id="event-type-${state.value}-1"
@@ -64,11 +64,11 @@ export default class PointTypeView extends RadioGroupView {
         <label
           class="event__type-label  event__type-label--${state.value}"
           for="event-type-${state.value}-1"
-          tabindex="-1">
+          tabindex = "-1">
           ${state.title}
         </label>
       </div>
-    `;
+  `;
   }
 
   /**
@@ -76,8 +76,7 @@ export default class PointTypeView extends RadioGroupView {
    */
   setOptions(states) {
     const optionsHtml = states.map(this.createOptionHtml).join('');
-
-    this.querySelector('fieldset').insertAdjacentHTML('beforeend', optionsHtml);
+    this.querySelector('.event__type-group').insertAdjacentHTML('beforeend', optionsHtml);
   }
 
   open() {
@@ -103,20 +102,22 @@ export default class PointTypeView extends RadioGroupView {
    * @param {Event & {target: HTMLInputElement}} event
    */
   handleChange(event) {
-    if(event.target.type === 'checkbox') {
+    if (event.target.type === 'checkbox') {
       return event.stopImmediatePropagation();
     }
+
     this.setValue(event.target.value);
   }
 
   /**
    * @param {KeyboardEvent} event
    */
-  handleKeyDown(event) {
-    if (event.key === 'Escape' && this.querySelector('.event__type-toggle:checked')) {
+  handleKeydown(event) {
+    if ((event.key === 'Escape') && (this.querySelector('.event__type-toggle:checked'))) {
       event.stopPropagation();
       this.close();
     }
+
     else if (event.key === ' ') {
       this.open();
     }

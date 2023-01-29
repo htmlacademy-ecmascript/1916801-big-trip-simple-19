@@ -13,7 +13,7 @@ export default class FilterView extends RadioGroupView {
    */
   createOptionHtml(state) {
 
-    return html/*html*/`
+    return html`
       <div class="trip-filters__filter">
         <input
           id="filter-${state.value}"

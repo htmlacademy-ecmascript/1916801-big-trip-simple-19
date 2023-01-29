@@ -25,8 +25,8 @@ export default class PointEditorView extends NewPointEditorView {
   }
 
   /**
- * @override
- */
+   * @override
+   */
   close() {
     this.replaceWith(this.pointView);
     this.pointView?.fadeInLeft();
@@ -36,7 +36,7 @@ export default class PointEditorView extends NewPointEditorView {
   }
 
   createCloseButtonHtml() {
-    return html/*html*/`
+    return html`
       <button class="event__rollup-btn" type="button">
         <span class="visually-hidden">Close event</span>
       </button>
@@ -44,20 +44,21 @@ export default class PointEditorView extends NewPointEditorView {
   }
 
   /**
-  * @param {Boolean} flag
-  */
+   * @param {boolean} flag
+   */
   awaitDelete(flag) {
     const text = deletButtonTextMap[Number(flag)];
 
     this.querySelector('.event__reset-btn').textContent = text;
+
     this.uiBlockerView.toggle(flag);
   }
 
   /**
    * @param {MouseEvent & {target: Element}} event
    */
-  handleClick(event){
-    if (event.target.closest('.event__rollup-btn')){
+  handleClick(event) {
+    if (event.target.closest('.event__rollup-btn')) {
       this.close();
     }
   }

@@ -1,6 +1,6 @@
 import View from '../view';
 import { html } from '../../utils';
-import './offer-view.css';
+import './offers-view.css';
 
 export default class OffersView extends View {
   constructor() {
@@ -13,34 +13,34 @@ export default class OffersView extends View {
    * @override
    */
   createHtml() {
-    return html/*html*/`
-      <h3 class="event__section-title  event__section-title--offers">Offers</h3>
+    return html`
+        <h3 class="event__section-title  event__section-title--offers">Offers</h3>
 
-      <div class="event__available-offers"></div>
+        <div class="event__available-offers"></div>
     `;
   }
 
   /**
+   *
    * @param {OfferToggleViewState} state
    */
   createOptionHtml(state) {
-    return html/*html*/`
-         <div class="event__offer-selector">
-          <input
-            class="event__offer-checkbox  visually-hidden"
-            id="event-offer-${state.id}"
-            type="checkbox"
-            name="offer"
-            value="${state.id}"
-            ${state.checked ? 'checked' : ''}>
+    return html`
+      <div class="event__offer-selector">
+        <input class="event__offer-checkbox  visually-hidden"
+          id="event-offer-${state.id}"
+          type="checkbox"
+          name="offer"
+          value="${state.id}"
+          ${state.checked ? 'checked' : ''}>
 
-          <label class="event__offer-label" for="event-offer-${state.id}">
+        <label class="event__offer-label" for="event-offer-${state.id}">
             <span class="event__offer-title">${state.title}</span>
             &plus;&euro;&nbsp;
             <span class="event__offer-price">${state.price}</span>
-          </label>
-        </div>
- `;
+        </label>
+      </div>
+    `;
   }
 
   /**
@@ -48,6 +48,7 @@ export default class OffersView extends View {
    */
   setOptions(states) {
     const optionsHtml = states.map(this.createOptionHtml).join('');
+
     this.querySelector('.event__available-offers').innerHTML = optionsHtml;
   }
 
