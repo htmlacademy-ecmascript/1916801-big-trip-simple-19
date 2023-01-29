@@ -5,14 +5,14 @@ export default class BasePriceView extends View {
   constructor() {
     super();
 
-    this.classList.add('event__field-group--price');
+    this.classList.add('event__field-group', 'event__field-group--price');
   }
 
   /**
    * @override
    */
   createHtml() {
-    return html/*html*/`
+    return html`
       <label class="event__label" for="event-price-1">
         <span class="visually-hidden">Price</span>
         &euro;
@@ -22,18 +22,15 @@ export default class BasePriceView extends View {
         id="event-price-1"
         type="number"
         name="base_price"
-        min="1"
-        step="1">
+        min="1">
     `;
   }
 
   /**
-   *
    * @param {number} value
    */
   setValue(value) {
     this.querySelector('input').valueAsNumber = value;
-
   }
 
   getValue() {

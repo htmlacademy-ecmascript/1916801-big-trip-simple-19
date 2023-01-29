@@ -21,7 +21,7 @@ export default class PointView extends View {
    * @param {PointViewState} state
    */
   createHtml(state) {
-    return html/*html*/`
+    return html`
       <div class="event">
         <time class="event__date" datetime="${state.startDate}">${state.date}</time>
         <div class="event__type">
@@ -52,10 +52,10 @@ export default class PointView extends View {
   }
 
   /**
-  * @param {OfferViewState} state
-  */
+   * @param {OfferViewState} state
+   */
   createOfferHtml(state) {
-    return html/*html*/`
+    return html`
       <li class="event__offer">
         <span class="event__offer-title">${state.title}</span>
         &plus;&euro;&nbsp;

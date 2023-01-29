@@ -12,7 +12,7 @@ export default class DestinationDetailsView extends View {
 	 * @override
 	 */
   createHtml() {
-    return html/*html*/`
+    return html`
       <h3 class="event__section-title  event__section-title--destination">Destination</h3>
       <p class="event__destination-description"></p>
 
@@ -26,8 +26,8 @@ export default class DestinationDetailsView extends View {
 	 * @param {Picture} state
 	 */
   createPictureHtml(state) {
-    return html/*html*/`
-     <img class="event__photo" src="${state.src}" alt="${state.description}">
+    return html`
+      <img class="event__photo" src="${state.src}" alt="${state.description}">
     `;
   }
 

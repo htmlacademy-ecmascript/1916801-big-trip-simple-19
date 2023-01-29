@@ -15,9 +15,9 @@ export default class ListView extends View {
   }
 
   /**
- * @param {string} id
- * @return {PointView}
- */
+   * @param {string} id
+   * @return {PointView}
+   */
   findById(id) {
     return this.querySelector(`${PointView}[data-id="${id}"]`);
   }

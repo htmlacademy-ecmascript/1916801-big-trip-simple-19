@@ -1,12 +1,10 @@
 import View from './view';
 
 export default class RadioGroupView extends View {
-
   /**
    * @param {string} value
    */
   setValue(value) {
-
     /**
      * @type {HTMLInputElement}
      */
@@ -18,7 +16,6 @@ export default class RadioGroupView extends View {
   }
 
   getValue() {
-
     /**
      * @type {HTMLInputElement}
      */
@@ -34,7 +31,6 @@ export default class RadioGroupView extends View {
    * @param {boolean[]} flags
    */
   setDisability(flags) {
-
     /**
      * @type {NodeListOf<HTMLInputElement>}
      */
@@ -43,5 +39,4 @@ export default class RadioGroupView extends View {
     });
   }
 }
-
 customElements.define(String(RadioGroupView), RadioGroupView);
