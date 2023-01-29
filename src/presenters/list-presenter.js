@@ -11,17 +11,29 @@ export default class ListPresenter extends Presenter {
 
     this.updateView();
     this.view.addEventListener('edit', this.handleViewEdit.bind(this));
+
     this.pointsModel.addEventListener('filter', this.handlePointsModelFilter.bind(this));
     this.pointsModel.addEventListener('sort', this.handlePointsModelSort.bind(this));
     this.pointsModel.addEventListener('add', this.handlePointsModelAdd.bind(this));
     this.pointsModel.addEventListener('update', this.handlePointsModelUpdate.bind(this));
+    this.pointsModel.addEventListener('delete', this.handlePointsModelDelete.bind(this));
   }
 
-  updateView() {
-    const points = this.pointsModel.list();
-    const pointsViewStates = points.map(this.createPointViewState, this);
+  /**
+   * @param {PointAdapter} [targetPoint]
+   */
+  updateView(targetPoint) {
+    const pointViews = this.view.setItems(this.pointsModel.list().map(this.createPointViewState, this));
 
-    this.view.setItems(pointsViewStates);
+    if (targetPoint) {
+      this.view.findById(targetPoint.id)?.fadeInLeft();
+    }
+
+    else {
+      pointViews.forEach((pointView, index) => {
+        pointView.fadeInLeft({ delay: 100 * index });
+      });
+    }
   }
 
   /**
@@ -38,18 +50,17 @@ export default class ListPresenter extends Presenter {
       .map((offer) => ({
         title: offer.title,
         price: formatNumber(offer.price)
-      })
-      );
+      }));
 
     return {
       id: point.id,
       date: formatDate(point.startDate),
       icon: pointIconMap[point.type],
-      title: `${pointTitleMap[point.type]}  ${destination.name}`,
+      title: `${pointTitleMap[point.type]} ${destination.name}`,
       startTime: formatTime(point.startDate),
-      startDate: point.startDate,
+      startDate: formatDate(point.startDate),
       endTime: formatTime(point.endDate),
-      endDate: point.endDate,
+      endDate: formatDate(point.endDate),
       basePrice: formatNumber(point.basePrice),
       offers: offerViewStates
     };
@@ -63,10 +74,6 @@ export default class ListPresenter extends Presenter {
     this.updateView();
   }
 
-  handlePointsModelAdd(){
-    this.updateView();
-  }
-
   /**
    * @param {CustomEvent & {target: PointView}} event
    */
@@ -74,7 +81,25 @@ export default class ListPresenter extends Presenter {
     this.navigate('/edit', event.target.dataset);
   }
 
-  handlePointsModelUpdate() {
-    this.updateView();
+
+  /**
+   * @param {CustomEvent<PointAdapter>} event
+   */
+  handlePointsModelAdd(event) {
+    this.updateView(event.detail);
+  }
+
+  /**
+   * @param {CustomEvent<{newItem: PointAdapter}>} event
+   */
+  handlePointsModelUpdate(event) {
+    this.updateView(event.detail.newItem);
+  }
+
+  /**
+   * @param {CustomEvent<PointAdapter>} event
+   */
+  handlePointsModelDelete(event) {
+    this.updateView(event.detail);
   }
 }

@@ -25,11 +25,11 @@ export default class CollectionModel extends Model {
    */
   constructor(setup) {
     super();
+
     this.#store = setup.store;
     this.#adapt = setup.adapt;
     this.#filter = setup.filter;
     this.#sort = setup.sort;
-
   }
 
   /**

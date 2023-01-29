@@ -4,19 +4,17 @@ import NewPointEditorPresenter from './new-point-editor-presenter';
  * @extends {NewPointEditorPresenter<PointEditorView>}
  */
 export default class PointEditorPresenter extends NewPointEditorPresenter {
-  constructor() {
-    super(...arguments);
-
-  }
-
   /**
    * @override
    * @param {PointAdapter} point
    */
   async save(point) {
     point.id = this.view.dataset.id;
-
     await this.pointsModel.update(point);
+  }
+
+  async delete(id) {
+    await this.pointsModel.delete(id);
   }
 
   /**
@@ -28,6 +26,10 @@ export default class PointEditorPresenter extends NewPointEditorPresenter {
     if (this.location.pathname === '/edit') {
       const pointId = this.location.searchParams.get('id');
       const point = this.pointsModel.findById(pointId);
+
+      if (!point) {
+        throw new Error(`Cannot edit point ${pointId} (it does not exist)`);
+      }
 
       this.view.dataset.id = pointId;
       this.view.open();
@@ -45,18 +47,19 @@ export default class PointEditorPresenter extends NewPointEditorPresenter {
     this.view.awaitDelete(true);
 
     try {
-      const pointId = this.view.dataset.id;
+      await this.delete(this.view.dataset.id);
 
-      await this.pointsModel.delete(pointId);
       this.view.close();
     }
 
     catch (exception) {
       this.view.shake();
-
-      window.console.log(exception);
     }
 
     this.view.awaitDelete(false);
+  }
+
+  handleViewClose() {
+    this.navigate('/');
   }
 }
