@@ -1,6 +1,5 @@
 import PointView from './point-view';
 import View from './view';
-// import {html} from '../utils';
 
 export default class ListView extends View {
 
@@ -11,11 +10,14 @@ export default class ListView extends View {
     const views = states.map((state) => new PointView(state));
 
     this.replaceChildren(...views);
+
+    return views;
   }
 
   /**
-   * @param {string} id
-   */
+ * @param {string} id
+ * @return {PointView}
+ */
   findById(id) {
     return this.querySelector(`${PointView}[data-id="${id}"]`);
   }

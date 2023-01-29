@@ -10,15 +10,20 @@ export const filterTitleMap = {
  */
 export const filterCallbackMap = {
   [FilterType.EVERYTHING]: () => true,
-  [FilterType.FUTURE]: (point) => point.endDateAsNumber > Date.now()
+  [FilterType.FUTURE]: (point) => Date.now() <= point.endDateAsNumber
+};
+
+export const emptyListTextMap = {
+  [FilterType.EVERYTHING]: 'Click NewEvent to create your first point',
+  [FilterType.FUTURE]: 'There are no future events now'
 };
 
 export const sortTitleMap = {
-  [SortType.DAY]: 'Day',
-  [SortType.EVENT]: 'Event',
-  [SortType.TIME]: 'Time',
-  [SortType.PRICE]: 'Price',
-  [SortType.OFFERS]: 'Offers'
+  [SortType.DAY]: 'day',
+  [SortType.EVENT]: 'event',
+  [SortType.TIME]: 'time',
+  [SortType.PRICE]: 'price',
+  [SortType.OFFERS]: 'offers'
 };
 
 export const sortDisabilityMap = {
@@ -61,7 +66,7 @@ export const saveButtonTextMap = {
   [ButtonState.PRESSED]: 'Saving...'
 };
 
-export const deleteButtonTextMap = {
+export const deletButtonTextMap = {
   [ButtonState.DEFAULT]: 'Delete',
   [ButtonState.PRESSED]: 'Deleting...'
 };

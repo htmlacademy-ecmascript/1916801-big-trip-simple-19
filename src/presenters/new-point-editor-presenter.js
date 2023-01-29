@@ -14,17 +14,20 @@ export default class NewPointEditorPresenter extends Presenter {
     const pointTypeOptions =
       Object.entries(pointTitleMap).map(([value, title]) => ({ value, title }));
 
-    const destinationsOptions =
+    const destinationOptions =
       this.destinationsModel.listAll().map((item) => ({ title: '', value: item.name }));
 
     this.view.pointTypeView.setOptions(pointTypeOptions);
     this.view.pointTypeView.addEventListener('change', this.handlePointTypeViewChange.bind(this));
 
-    this.view.destinationView.setOptions(destinationsOptions);
+    this.view.destinationView.setOptions(destinationOptions);
     this.view.destinationView.addEventListener('input', this.handleDestinationViewInput.bind(this));
+
     this.view.datesView.setConfig({
-      dateFormat: 'd/n/y H:i',
-      locale: { firstDayOfWeek: 1 },
+      dateFormat: 'd/m/y H:i',
+      locale: {
+        firstDayOfWeek: 1
+      },
       'time_24hr': true
     });
 
@@ -67,8 +70,8 @@ export default class NewPointEditorPresenter extends Presenter {
   }
 
   /**
- * @param {DestinationAdapter} [destination]
- */
+   * @param {DestinationAdapter} [destination]
+   */
   updateDestinationDetailsView(destination) {
     this.view.destinationDetailsView.hidden = !destination;
 
@@ -82,27 +85,6 @@ export default class NewPointEditorPresenter extends Presenter {
    */
   async save(point) {
     await this.pointsModel.add(point);
-  }
-
-  /**
-   * @override
-   */
-  handleNavigation() {
-    if (this.location.pathname === '/new') {
-      const point = this.pointsModel.item();
-
-      point.type = PointType.FLIGHT;
-      point.destinationId = this.destinationsModel.item(0).id;
-      point.startDate = new Date().toJSON();
-      point.endDate = point.startDate;
-      point.basePrice = 150;
-      point.offerIds = ['1', '2'];
-
-      this.view.open();
-      this.updateView(point);
-    } else {
-      this.view.close(false);
-    }
   }
 
   /**
@@ -125,20 +107,48 @@ export default class NewPointEditorPresenter extends Presenter {
       point.endDate = endDate;
       point.basePrice = this.view.basePriceView.getValue();
       point.offerIds = this.view.offersView.getValues();
-      point.id = String(this.pointsModel.listAll().length);
 
       await this.save(point);
 
       this.view.close();
     }
+
     catch (exception) {
       this.view.shake();
 
+      if (exception.cause?.error) {
+        const [{ fieldName }] = exception.cause.error;
+
+        this.view.findByName(fieldName)?.focus();
+      }
     }
 
     this.view.awaitSave(false);
-
   }
+
+  /**
+   * @override
+   */
+  handleNavigation() {
+    if (this.location.pathname === '/new') {
+      const point = this.pointsModel.item();
+
+      point.type = PointType.BUS;
+      point.destinationId = this.destinationsModel.item(0).id;
+      point.startDate = new Date().toJSON();
+      point.endDate = point.startDate;
+      point.basePrice = 100;
+      point.offerIds = ['1', '2'];
+
+      this.view.open();
+
+      this.updateView(point);
+    }
+    else {
+      this.view.close(false);
+    }
+  }
+
 
   /**
    * @param {Event} event
@@ -156,6 +166,7 @@ export default class NewPointEditorPresenter extends Presenter {
     const pointType = this.view.pointTypeView.getValue();
 
     this.view.destinationView.setLabel(pointTitleMap[pointType]);
+
     this.updateOffersView();
   }
 

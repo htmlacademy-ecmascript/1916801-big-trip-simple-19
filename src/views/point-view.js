@@ -3,7 +3,6 @@ import { html } from '../utils';
 import './point-view.css';
 
 export default class PointView extends View {
-
   /**
    * @param {PointViewState} state
    */
@@ -41,6 +40,9 @@ export default class PointView extends View {
         </p>
         <h4 class="visually-hidden">Offers:</h4>
         <ul class="event__selected-offers">
+          <li class="event__offer">
+            <span class="event__offer-title">No additional offers</span>
+          </li>
         </ul>
         <button class="event__rollup-btn" type="button">
           <span class="visually-hidden">Open event</span>
@@ -50,8 +52,8 @@ export default class PointView extends View {
   }
 
   /**
-   * @param {OfferViewState} state
-   */
+  * @param {OfferViewState} state
+  */
   createOfferHtml(state) {
     return html/*html*/`
       <li class="event__offer">
@@ -68,7 +70,9 @@ export default class PointView extends View {
   setOffers(states) {
     const offersHtml = states.map(this.createOfferHtml).join('');
 
-    this.querySelector('.event__selected-offers').innerHTML = offersHtml;
+    if (offersHtml) {
+      this.querySelector('.event__selected-offers').innerHTML = offersHtml;
+    }
   }
 
   /**
@@ -76,7 +80,7 @@ export default class PointView extends View {
    */
   handleClick(event) {
     if (event.target.closest('.event__rollup-btn')) {
-      this.dispatchEvent(new CustomEvent('edit', {bubbles: true}));
+      this.dispatchEvent(new CustomEvent('edit', { bubbles: true }));
     }
   }
 }

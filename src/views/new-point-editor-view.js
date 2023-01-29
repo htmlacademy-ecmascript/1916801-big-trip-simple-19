@@ -81,6 +81,7 @@ export default class NewPointEditorView extends View {
   open() {
     this.listView.prepend(this);
     this.datesView.createCalendars();
+    this.fadeInRight();
 
     document.addEventListener('keydown', this);
   }
@@ -104,6 +105,13 @@ export default class NewPointEditorView extends View {
 
     this.querySelector('.event__save-btn').textContent = text;
     this.uiBlockerView.toggle(flag);
+  }
+
+  /**
+   * @param {string} name
+   */
+  findByName(name) {
+    return this.querySelector('form').elements[name];
   }
 
   /**
