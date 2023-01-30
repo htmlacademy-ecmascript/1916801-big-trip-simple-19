@@ -1,7 +1,7 @@
 # Проект «Большое путешествие (простой)»
 
 * Студент: [Anatoly Usmanov](https://up.htmlacademy.ru/ecmascript/19/user/1916801).
-* Наставник: `Александр Конотоп`.
+* Наставник: [Александр Конотоп](https://htmlacademy.ru/profile/id2123489).
 
 ---
 

@@ -12,7 +12,7 @@ export default class EmptyListPresenter extends Presenter {
     this.pointsModel.addEventListener('add', this.handlePointsModelAdd.bind(this));
     this.pointsModel.addEventListener('update', this.handlePointsModelUpdate.bind(this));
     this.pointsModel.addEventListener('delete', this.handlePointsModelDelete.bind(this));
-    this.pointsModel.addEventListener('filter: ', this.handlePointsModelFilter.bind(this));
+    this.pointsModel.addEventListener('filter', this.handlePointsModelFilter.bind(this));
   }
 
   updateView() {
