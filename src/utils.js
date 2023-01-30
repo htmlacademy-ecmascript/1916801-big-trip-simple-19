@@ -1,4 +1,4 @@
-import {escape} from 'he';
+import { escape } from 'he';
 import dayjs from 'dayjs';
 
 /**
