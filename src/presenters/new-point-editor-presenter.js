@@ -133,11 +133,7 @@ export default class NewPointEditorPresenter extends Presenter {
     if (this.location.pathname === '/new') {
       const point = this.pointsModel.item();
 
-      point.type = PointType.BUS;
-      point.destinationId = this.destinationsModel.item(0).id;
-      point.startDate = new Date().toJSON();
-      point.endDate = point.startDate;
-      point.basePrice = 100;
+      point.type = PointType.FLIGHT;
 
       this.view.open();
 
