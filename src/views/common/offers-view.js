@@ -35,9 +35,9 @@ export default class OffersView extends View {
           ${state.checked ? 'checked' : ''}>
 
         <label class="event__offer-label" for="event-offer-${state.id}">
-            <span class="event__offer-title">${state.title}</span>
-            &plus;&euro;&nbsp;
-            <span class="event__offer-price">${state.price}</span>
+          <span class="event__offer-title">${state.title}</span>
+          &plus;&euro;&nbsp;
+          <span class="event__offer-price">${state.price}</span>
         </label>
       </div>
     `;

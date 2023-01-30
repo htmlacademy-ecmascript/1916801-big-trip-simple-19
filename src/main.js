@@ -24,7 +24,7 @@ import EmptyListPresenter from './presenters/empty-list-presenter';
 
 
 const BASE = 'https://19.ecmascript.pages.academy/big-trip-simple';
-const AUTH = 'Basic korvet07ZZ0';
+const AUTH = 'Basic korvet07ZZ7';
 
 /**
  * @type {Store<Point>}
