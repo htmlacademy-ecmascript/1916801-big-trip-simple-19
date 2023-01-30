@@ -44,7 +44,7 @@ export default class NewPointEditorPresenter extends Presenter {
 
     this.view.pointTypeView.setValue(point.type);
     this.view.destinationView.setLabel(pointTitleMap[point.type]);
-    this.view.destinationView.setValue(destination.name);
+    this.view.destinationView.setValue(destination?.name ?? '');
     this.view.datesView.setValues([point.startDate, point.endDate]);
     this.view.basePriceView.setValue(point.basePrice);
 
