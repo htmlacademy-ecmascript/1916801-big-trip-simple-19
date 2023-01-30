@@ -20,7 +20,7 @@ export default class EmptyListPresenter extends Presenter {
     const filter = this.pointsModel.getFilter();
     const filterType = findKey(filterCallbackMap, filter);
 
-    this.view.hidden = (this.location.pathname === '/new') || !!points.length;
+    this.view.hidden = (this.location.pathname === '/new') || Boolean(points.length);
 
     this.view.textContent = emptyListTextMap[filterType];
   }

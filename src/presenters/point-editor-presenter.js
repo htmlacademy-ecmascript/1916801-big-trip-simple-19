@@ -58,8 +58,4 @@ export default class PointEditorPresenter extends NewPointEditorPresenter {
 
     this.view.awaitDelete(false);
   }
-
-  handleViewClose() {
-    this.navigate('/');
-  }
 }

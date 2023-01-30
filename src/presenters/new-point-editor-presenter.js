@@ -133,7 +133,7 @@ export default class NewPointEditorPresenter extends Presenter {
     if (this.location.pathname === '/new') {
       const point = this.pointsModel.item();
 
-      point.type = PointType.FLIGHT;
+      point.type = PointType.TAXI;
 
       this.view.open();
 
